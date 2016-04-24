@@ -1,0 +1,31 @@
+<div class='main' ng-contollrt="Controller">
+  <h5>SFCらしい人を、あと{{4 - cnt}}人えらんで </h5>
+  <div class="image_area row">
+    <span class="col-md-4 col-sm-4 col-xs-4" ng-repeat="image in images">
+      <img src="static/image/{{image.url}}" ng-click="clk_img(image)" ng-if="image.selected == false"/>
+      <img src="static/image/{{image.url}}" ng-click="clk_img(image)" ng-if="image.selected == true" class="selected"/>
+    </span>
+  </div>
+
+  <div class="select_area">
+    <div>
+      <h5>学部</h5>
+      <label class="radio-inline"><input type="radio" name="faculty" ng-model="faculty" value="0">総合政策</label>
+      <label class="radio-inline"><input type="radio" name="faculty" ng-model="faculty" value="1">環境情報</label>
+    </div>
+    <div>
+      <h5>性別</h5>
+    <label class="radio-inline "><input type="radio" name="sex" ng-model="sex" value="0">男</label>
+    <label class="radio-inline"><input type="radio" name="sex" ng-model="sex" value="1">女</label>
+    </div>
+    <div>
+      <h5>自分はどっちだと思う?</h5>
+    <label class="radio-inline"><input type="radio" name="type" ng-model="_type" value="0">大人気分</label>
+    <label class="radio-inline"><input type="radio" name="type" ng-model="_type" value="1">子供気分</label>
+    </div>
+  </div>
+
+  <a href="/#/end"><button type="button" class="btn btn-success col-xs-12" ng-click="send()">こんな感じ</button></a>
+
+
+</div>

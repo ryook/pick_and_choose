@@ -1,0 +1,50 @@
+body{
+  background-color: #E6E5E1;
+}
+h1{
+  text-align: center;
+}
+
+.dis{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.toppage span{
+  padding: 0;
+}
+
+.image_area span{
+  padding: 0;
+}
+
+img{
+  width: 100%;
+}
+
+.selected{
+  -webkit-filter: grayscale(100%);
+   -moz-filter: grayscale(100%);
+   -o-filter: grayscale(100%);
+   -ms-filter: grayscale(100%);
+   filter: grayscale(100%);
+}
+
+h5{
+  color: #292929;
+  border-bottom: 2px solid #F5F5F5;
+}
+
+.main{
+  width: 90%;
+  margin: 0 auto;
+}
+
+button{
+  margin-top: 30px;
+  background-color: #0D47A1;
+}
+
+label {
+  font-size: 20px;
+  color: #292929;
+}
