@@ -16,7 +16,7 @@ if MONGO_URL:
     # Get a connection
     connection = MongoClient(MONGO_URL)
     # Get the database
-    db = connection.heroku_8kvm200l
+    db = connection.heroku_r2gp668m
 else:
     # Not on an app with the MongoHQ add-on, do some localhost action
     connection = MongoClient('localhost', 27017)
