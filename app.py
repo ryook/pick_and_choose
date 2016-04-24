@@ -64,23 +64,13 @@ def get_reaserch(id):
         return json.dumps(data)
 
 
-# @app.route('/end')
-# def end():
-#     return render_template('end.html')
-#
-#
-# @app.route('/result', methods=['GET'])
-# def result():
-#     contents = list(db.entries.find())
-#     results = culcu_result(contents)
-#     print(results)
-#     return json.dumps(results)
-#
-#
-# def show_form():
-#     return render_template('form.html')
-#
-#
+@app.route('/answers', methods=['POST'])
+def save_answer():
+    data = parse_answer_request(request.args)
+    db.answers.save(data)
+    return "success"
+
+
 def parse_research_request(obj):
     if obj is None:
         abort(404)
@@ -100,36 +90,16 @@ def parse_research_request(obj):
     data['questions'] = add_questions
     return data
 
-#
-# def culcu_result(contents):
-#     results = []
-#     for n in range(1, 10):
-#         row_result = [parse(i) for i in contents if i['teacher'] == str(n)]
-#         result = persent(row_result, n)
-#         results.append(result)
-#     desc_result = sorted(results, key=lambda x: x['all_cnt'], reverse=True)
-#     return desc_result
-#
-# def persent(result, n):
-#     dic = {}
-#     dic['teacher'] = n
-#     dic['all_cnt'] = len(result)
-#     dic['s0'] = len([r for r in result if r['sex']=='0'])
-#     dic['s1'] = len([r for r in result if r['sex']=='1'])
-#     dic['f0'] = len([r for r in result if r['faculty']=='0'])
-#     dic['f1'] = len([r for r in result if r['faculty']=='1'])
-#     dic['u0'] = len([r for r in result if r['user_type']=='0'])
-#     dic['u1'] = len([r for r in result if r['user_type']=='1'])
-#     return dic
-#
-# def parse(content):
-#     obj = {}
-#     obj['sex'] = content['sex']
-#     obj['user_type'] = content['user_type']
-#     obj['faculty'] = content['faculty']
-#     obj['teacher'] = content['teacher']
-#     return obj
 
+def parse_answer_request(obj):
+    keys = obj.keys()
+    data = {}
+    for key in keys:
+        data[key] = obj.get(key)
+        if key == 'selected':
+            selected = obj.getlist(key)
+            data[key] = selected
+    return data
 
 
 if __name__ == "__main__":

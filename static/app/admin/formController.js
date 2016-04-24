@@ -41,11 +41,11 @@ angular.module('pac')
           url: requestUrl,
           params: query
         }).success(function(data){
-          console.log(status)
+          $location.path('/end')
         }).error(function(data, status){
           console.log(status)
       });
-      $location.path('/admin')
+
     }
 
   }])
