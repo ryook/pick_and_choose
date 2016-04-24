@@ -15,8 +15,8 @@ angular.module('pac')
 
     // answer1
     set_question = function(){
-      $scope.question = "ぱっぱぱりらしてそうなのはどれ？"
-      const imageNum = 6
+      $scope.question = $scope.data.question
+      const imageNum = $scope.data.imageCount
       const imagePath = $scope.data.image_path
       var images = [];
       for(var i=1;i<=imageNum;i++){
@@ -87,10 +87,4 @@ angular.module('pac')
       });
     };
 
-}])
-
-
-
-
-//  質問
-//  画像の数
+}]);

@@ -10,7 +10,9 @@ angular.module('pac')
          }).success(function(data){
            $scope.title = data.title;
            $scope.description = data.description;
-           $scope.image = data.image_path
+           $scope.image = data.image_path;
+           $scope.imageCount = data.imageCount;
+           $scope.question = data.question;
            data.questions.forEach(function(d){
              d.choices = d.choices.join('\n')
            })
@@ -33,6 +35,8 @@ angular.module('pac')
       query.description = $scope.description;
       query.imageUrl = $scope.image;
       query.questions = $scope.addquestions;
+      query.imageCount = $scope.imageCount;
+      query.question = $scope.question;
       console.log(query)
       requestUrl = '/research/' + id;
 
@@ -41,7 +45,7 @@ angular.module('pac')
           url: requestUrl,
           params: query
         }).success(function(data){
-          $location.path('/end')
+          $location.path('/admin')
         }).error(function(data, status){
           console.log(status)
       });

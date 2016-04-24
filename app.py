@@ -5,8 +5,6 @@ import os
 
 from flask import Flask, render_template, request, abort
 from pymongo import MongoClient
-# from models.models import Content
-# from models.database import db_session
 
 
 app = Flask(__name__)
@@ -78,6 +76,8 @@ def parse_research_request(obj):
     data['title'] = obj.get('title')
     data['description'] = obj.get('description')
     data['image_path'] = obj.get('imageUrl')
+    data['imageCount'] = obj.get('imageCount')
+    data['question'] = obj.get('question')
     questions = obj.getlist('questions')
     print(questions)
     add_questions = []
