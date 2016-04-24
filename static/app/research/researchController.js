@@ -80,10 +80,10 @@ angular.module('pac')
           url: '/answers',
           params: data
         }).success(function(data){
-          $location.path('/')
+          $location.path('/end')
         }).error(function(data, status){
           console.log(status)
-          $location.path('/')
+          $location.path('/end')
       });
     };
 
