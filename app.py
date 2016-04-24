@@ -105,7 +105,7 @@ def parse_answer_request(obj):
 if __name__ == "__main__":
     MONGO_URI = os.environ.get('MONGOLAB_URI')
     if MONGO_URI:
-          run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+        run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
     else:
-          app.run(host='localhost')
+        app.run(host='localhost')
     app.run()
