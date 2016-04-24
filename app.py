@@ -1,4 +1,5 @@
 # codig:utf-8
+
 import json
 
 import sqlite3
@@ -50,7 +51,7 @@ def get_reaserch(id):
             db.researches.save(data)
             return "success"
         data['id'] = id
-        # dbに存在するか確認
+
         db_data = db.researches.find_one({'id': id})
         if db_data:
             db.researches.update_one({'id': id}, {'$set': data})
