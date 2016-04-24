@@ -10,7 +10,7 @@ from pymongo import MongoClient
 app = Flask(__name__)
 app.debug = True
 
-MONGO_URL = os.environ.get('MONGOLAB_URI')
+MONGO_URL = os.environ.get('MONGOLAB_COBALT_URI')
 
 if MONGO_URL:
     # Get a connection
