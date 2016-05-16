@@ -5,7 +5,7 @@ angular.module('pac')
     id = $routeParams.researchId
     $http({
         method: 'GET',
-        url: '/research/' + 1
+        url: '/research/' + id
       }).success(function(data){
         $scope.data = data
         set_question()
