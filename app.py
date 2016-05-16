@@ -32,17 +32,8 @@ def main():
 def get_reaserches():
     db_datas = db.researches.find()
     datas = []
-    answers = db.answers.find()
     for d in db_datas:
         object_id = d.pop('_id')
-        answers_count = []
-        for a in answers:
-            try:
-                if a['searchId'] == str(d['id']):
-                    answers_count.append(a)
-            except KeyError:
-                pass
-        d['count'] = len(answers_count)
         datas.append(d)
     return json.dumps(datas)
 

@@ -4,6 +4,7 @@ angular.module('pac')
     $scope.selceting = true
     $scope.curr_count = 0
     id = $routeParams.researchId
+    $scope.searchId = id
     $http({
         method: 'GET',
         url: '/research/' + id
