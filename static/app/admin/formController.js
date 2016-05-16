@@ -24,10 +24,15 @@ angular.module('pac')
 
     $scope.sex = "男性&#13;&#10;女性&#13;&#10;その他"
     $scope.addquestions = [{"id":1, "title":"", "choices":""}]
+
     $scope.add = function(){
       n = $scope.addquestions.length;
       $scope.addquestions.push({"id":n+1, "title":"", "choices":""});
     };
+
+    $scope.delete = function(id){
+      console.log(add)
+    }
 
     $scope.save = function(){
       query = {}
