@@ -69,6 +69,7 @@ angular.module('pac')
     $scope.aq = []
     $scope.save = function(sex, age, aq, free){
       data = {};
+      data['searchId'] = $scope.searchId
       data['sex'] = sex;
       data['age'] = age;
       data['free'] = free;
