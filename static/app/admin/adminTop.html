@@ -4,6 +4,7 @@
     <tr class="row" ng-repeat="research in researches">
       <td class="col-xs-2"><img src="{{research.image_path}}logo.jpg"></img></td>
       <td class="col-xs-8"><h4>{{research.title}}</h4></td>
+      <td class="col-xs-1"><h4>{{research.count}}</h4></td>
       <td class="col-xs-2"><button class="btn btn-danger" ng-click="edit(research.id)">変更</button></td>
     </tr>
   </table>

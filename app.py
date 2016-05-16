@@ -38,6 +38,18 @@ def get_reaserches():
     return json.dumps(datas)
 
 
+@app.route('/admin/research', methods=['GET'])
+def get_admin_reaserches():
+    db_datas = db.researches.find()
+    datas = []
+    for d in db_datas:
+        object_id = d.pop('_id')
+        answers = db.answers.find({'searchId': str(d['id'])})
+        d['count'] = len([a for a in answers])
+        datas.append(d)
+    return json.dumps(datas)
+
+
 @app.route('/research/<int:id>', methods=['GET', 'POST'])
 def get_reaserch(id):
     if request.method == 'POST':

@@ -4,7 +4,7 @@ angular.module('pac')
 
     $http({
         method: 'GET',
-        url: '/research'
+        url: '/admin/research'
       }).success(function(data){
         $scope.researches = data
       }).error(function(data, status){
