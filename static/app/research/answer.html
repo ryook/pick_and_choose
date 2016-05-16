@@ -8,7 +8,7 @@
       <img src="{{image.url}}" ng-click="clk_img(image)" ng-if="image.selected == true" class="selected"/>
     </span>
   </div>
-  <button class="btn btn-info col-xs-12" ng-click="click_nxtbtn()">Next</button>
+  <button ng-if='limit == curr_count' class="btn btn-info col-xs-12" ng-click="click_nxtbtn()">Next</button>
   </span>
 
   <span ng-if="selceting == false">
