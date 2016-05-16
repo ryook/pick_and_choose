@@ -2,10 +2,10 @@ angular.module('pac')
   .controller('ResearchController', ['$scope', '$http', '$location', '$routeParams',
    function ($scope, $http, $location, $routeParams) {
     $scope.selceting = true
-    id = $routeParams.researchId
+    $scope.searchId = $routeParams.researchId
     $http({
         method: 'GET',
-        url: '/research/' + 1
+        url: '/research/' + $scope.searchId
       }).success(function(data){
         $scope.data = data
         set_question()
@@ -58,6 +58,7 @@ angular.module('pac')
     $scope.aq = []
     $scope.save = function(sex, age, aq, free){
       data = {};
+      data['searchId'] = $scope.searchId
       data['sex'] = sex;
       data['age'] = age;
       data['free'] = free;
