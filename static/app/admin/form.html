@@ -38,10 +38,19 @@
       <h5>選択肢</h5>
       <textarea class="form-control" rows=3 placeholder="ビール&#13;&#10;日本酒&#13;&#10;焼酎" ng-model="aq.choices"></textarea>
     </div>
-    <div>
-    <span class="col-xs-1"></span>
-    <button class="addbtn btn btn-success col-xs-10" ng-click='add()'>add</button>
+
+    <div class="question col-xs-12">
+      <button class="addbtn btn btn-success col-xs-12" ng-click='add()'>add</button>
     </div>
+
+    <div class="question col-xs-12">
+      <h4>フリーアンサー</h4>
+      フリーアンサー表示: <input type="checkbox" ng-model="FA"></input>
+      <h5>質問</h5>
+      <input class="form-control" placeholder="あなたにとってかわいいとは？" ng-model="FATitle"></input>
+    </div>
+
+
 
   </div>
   <button class="addbtn btn btn-info col-xs-12" ng-click='save(1)'>Save</button>

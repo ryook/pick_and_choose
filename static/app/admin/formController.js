@@ -14,6 +14,13 @@ angular.module('pac')
            $scope.imageCount = data.imageCount;
            $scope.limit = data.limit;
            $scope.question = data.question;
+           if(data.FA == 'true'){
+             $scope.FA = true;
+           }else {
+             $scope.FA = false;
+           }
+
+           $scope.FATitle = data.FATitle
            data.questions.forEach(function(d){
              d.choices = d.choices.join('\n')
            })
@@ -44,6 +51,8 @@ angular.module('pac')
       query.imageCount = $scope.imageCount;
       query.question = $scope.question;
       query.limit = $scope.limit;
+      query.FA = $scope.FA
+      query.FATitle = $scope.FATitle
       requestUrl = '/research/' + id;
 
       $http({

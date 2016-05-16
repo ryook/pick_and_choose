@@ -29,6 +29,10 @@ img{
    filter: grayscale(100%);
 }
 
+h4{
+  border-bottom: 2px solid #FFCDD2;
+}
+
 h5{
   color: #292929;
   border-bottom: 2px solid #F5F5F5;
@@ -47,4 +51,8 @@ button{
 label {
   font-size: 20px;
   color: #292929;
+}
+
+.btn{
+  margin-bottom: 20px;
 }
