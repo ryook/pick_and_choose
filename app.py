@@ -77,9 +77,9 @@ def parse_research_request(obj):
     data['description'] = obj.get('description')
     data['image_path'] = obj.get('imageUrl')
     data['imageCount'] = obj.get('imageCount')
+    data['limit'] = obj.get('limit')
     data['question'] = obj.get('question')
     questions = obj.getlist('questions')
-    print(questions)
     add_questions = []
     for question in questions:
         question = json.loads(question)
