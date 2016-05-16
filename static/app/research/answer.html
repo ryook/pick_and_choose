@@ -14,14 +14,14 @@
     <button class="btn btn-info col-xs-12" ng-click="click_backbtn()">back</button>
     <h4>性別</h4>
     <select class="form-control" ng-model="sex" ng-options="s for s in sexs"></select>
-    <h4>年齢</h4>
-    <select class="form-control" ng-model="age" ng-options="a for a in ages"></select>
+    <!-- <h4>年齢</h4>
+    <select class="form-control" ng-model="age" ng-options="a for a in ages"></select> -->
     <span ng-repeat="q in data.questions">
       <h4>{{q.title}}</h4>
       <select class="form-control" ng-model="$parent.aq[$index]" ng-options="c for c in q.choices"></select>
     </span>
     <h4>フリーアンサー</h4>
     <textarea class="form-control" ng-model="free" rows=5></textarea>
-    <button class="btn btn-danger col-xs-12" ng-click="save(age, sex, aq, free)">complete!</button>
+    <button class="btn btn-danger col-xs-12" ng-click="save(sex, age, aq, free)">complete!</button>
 
 </div>

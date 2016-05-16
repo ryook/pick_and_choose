@@ -47,6 +47,7 @@ angular.module('pac')
 
     // answer2
     $scope.sexs = ["男性", '女性', 'その他']
+
     ageList = new Array(56);
     ageList[0] = '14際以下';
     for(var i=1;i<56;i++){
@@ -54,6 +55,8 @@ angular.module('pac')
     }
     ageList[56] = '70歳以上';
     $scope.ages = ageList;
+    // TODO: 削除
+    $scope.age = 0
 
     $scope.aq = []
     $scope.save = function(sex, age, aq, free){
