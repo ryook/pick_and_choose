@@ -21,8 +21,12 @@
       <h4>{{q.title}}</h4>
       <select class="form-control" ng-model="$parent.aq[$index]" ng-options="c for c in q.choices"></select>
     </span>
-    <h4>フリーアンサー</h4>
-    <textarea class="form-control" ng-model="free" rows=5></textarea>
+
+    <div ng-if="FA=='true'">
+      <h4>{{FATitle}}</h4>
+      <textarea class="form-control" ng-model="free" rows=5></textarea>
+    </div>
+
     <button class="btn btn-danger col-xs-12" ng-click="save(sex, age, aq, free)">complete!</button>
 
 </div>

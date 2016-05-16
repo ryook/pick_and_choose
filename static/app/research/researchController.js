@@ -20,6 +20,8 @@ angular.module('pac')
       const imageNum = $scope.data.imageCount
       const imagePath = $scope.data.image_path
       $scope.limit = $scope.data.limit
+      $scope.FA = $scope.data.FA
+      $scope.FATitle = $scope.data.FATitle
       var images = [];
       for(var i=1;i<=imageNum;i++){
         obj = {};
