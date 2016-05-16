@@ -24,15 +24,31 @@ angular.module('pac')
       $scope.FA = $scope.data.FA
       $scope.FATitle = $scope.data.FATitle
       var images = [];
+      var showImages = [];
       for(var i=1;i<=imageNum;i++){
         obj = {};
         obj['url'] = imagePath + i + '.jpg';
         obj['id'] = i;
         obj['selected'] = false;
         images.push(obj)
+        showImages.push(obj)
       }
       $scope.imageList = images;
+      $scope.showImages = shuffle(showImages)
     }
+
+    var shuffle = function(list) {
+      var i = list.length;
+
+      while (--i) {
+        var j = Math.floor(Math.random() * (i + 1));
+        if (i == j) continue;
+        var k = list[i];
+        list[i] = list[j];
+        list[j] = k;
+      }
+      return list;
+    };
 
     $scope.clk_img = function(obj){
       if(obj.selected == false){
