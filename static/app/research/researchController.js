@@ -2,6 +2,7 @@ angular.module('pac')
   .controller('ResearchController', ['$scope', '$http', '$location', '$routeParams',
    function ($scope, $http, $location, $routeParams) {
     $scope.selceting = true
+    $scope.curr_count = 0
     id = $routeParams.researchId
     $http({
         method: 'GET',
@@ -18,6 +19,7 @@ angular.module('pac')
       $scope.question = $scope.data.question
       const imageNum = $scope.data.imageCount
       const imagePath = $scope.data.image_path
+      $scope.limit = $scope.data.limit
       var images = [];
       for(var i=1;i<=imageNum;i++){
         obj = {};
@@ -31,9 +33,13 @@ angular.module('pac')
 
     $scope.clk_img = function(obj){
       if(obj.selected == false){
-        $scope.imageList[obj.id-1].selected = true;
+        if($scope.curr_count < $scope.limit){
+          $scope.imageList[obj.id-1].selected = true;
+          $scope.curr_count += 1
+        };
       }else{
         $scope.imageList[obj.id-1].selected = false;
+        $scope.curr_count -= 1
       }
     };
 
