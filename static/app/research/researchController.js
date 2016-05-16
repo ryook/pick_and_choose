@@ -14,7 +14,7 @@ angular.module('pac')
       }).error(function(data, status){
         console.log(status)
     })
-
+    $scope.free;
     // answer1
     set_question = function(){
       $scope.question = $scope.data.question
@@ -84,6 +84,7 @@ angular.module('pac')
     $scope.age = 0
 
     $scope.aq = []
+    validation = false
     $scope.save = function(sex, age, aq, free){
       data = {};
       data['searchId'] = $scope.searchId
@@ -94,6 +95,11 @@ angular.module('pac')
         q = 'q'+(i+1);
         data[q] = aq[i];
       };
+      console.log(data)
+      if(!validationCheck(data, $scope.data.questions.length)){
+        alert('全ての項目に回答してください')
+        return
+      }
       images = [];
       for(var i=0,len=$scope.imageList.length;i<len;i++){
         if($scope.imageList[i].selected == true){
@@ -115,5 +121,23 @@ angular.module('pac')
           $location.path('/end')
       });
     };
+
+    validationCheck = function(data, aqLength){
+      if(!data['sex']){
+        return false
+      };
+      for(var i=0,len=aqLength;i<len;i++){
+        key = 'q' + (i+1);
+        if(!data[key]){
+          return false
+        }
+      }
+      if($scope.FA=='true'){
+        if(!data['free']){
+          return false
+        }
+      }
+      return true
+    }
 
 }]);
