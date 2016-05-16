@@ -55,7 +55,6 @@ angular.module('pac')
         if($scope.curr_count < $scope.limit){
           $scope.imageList[obj.id-1].selected = true;
           $scope.curr_count += 1
-          console.log($scope.imageList)
         };
       }else{
         $scope.imageList[obj.id-1].selected = false;
