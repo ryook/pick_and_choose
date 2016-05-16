@@ -83,8 +83,11 @@ def parse_research_request(obj):
     add_questions = []
     for question in questions:
         question = json.loads(question)
+        title = question['title']
+        if title == '':
+            continue
         obj = {}
-        obj['title'] = question['title']
+        obj['title'] = title
         obj['choices'] = question['choices'].split('\n')
         add_questions.append(obj)
     data['questions'] = add_questions

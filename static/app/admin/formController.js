@@ -26,7 +26,7 @@ angular.module('pac')
     $scope.addquestions = [{"id":1, "title":"", "choices":""}]
     $scope.add = function(){
       n = $scope.addquestions.length;
-      $scope.addquestions.push({"id":n+1, "title":"", "description":""});
+      $scope.addquestions.push({"id":n+1, "title":"", "choices":""});
     };
 
     $scope.save = function(){
