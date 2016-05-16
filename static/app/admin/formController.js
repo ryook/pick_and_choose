@@ -12,6 +12,7 @@ angular.module('pac')
            $scope.description = data.description;
            $scope.image = data.image_path;
            $scope.imageCount = data.imageCount;
+           $scope.limit = data.limit;
            $scope.question = data.question;
            data.questions.forEach(function(d){
              d.choices = d.choices.join('\n')
@@ -42,7 +43,7 @@ angular.module('pac')
       query.questions = $scope.addquestions;
       query.imageCount = $scope.imageCount;
       query.question = $scope.question;
-      console.log(query)
+      query.limit = $scope.limit;
       requestUrl = '/research/' + id;
 
       $http({
