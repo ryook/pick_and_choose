@@ -155,6 +155,7 @@ def get_analytics_selected():
                     new_answers.append(a)
             except:
                 print(a)
+        answers = new_answers
         # answers = [a for a in answers if a[key] in choicing]
     image_answer = [d['selected'] for d in new_answers]
     if image_answer:
