@@ -49,6 +49,7 @@ angular.module('pac')
           url: '/analytics_selected',
           params: params
         }).success(function(data){
+          console.log(data)
           if(data=='None'){
             $scope.filtered_count = 0
             $scope.images_filtered_cnt = 0
@@ -78,6 +79,8 @@ angular.module('pac')
     }
 
     set_show_data = function(allL, seL){
+      console.log(allL)
+      console.log(seL)
       rtn = []
       for(var i=0, l=allL.length; i<l; i++){
         sub = {}

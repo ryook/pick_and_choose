@@ -136,7 +136,8 @@ def get_analytics_selected():
     choices = request.args.getlist('choices')
 
     choices = [json.loads(c) for c in choices]
-    answers = db.answers.find({'id': _id})
+    answers = db.answers.find({'searchId': _id})
+    print(choices)
     if choices == []:
         image_answer = [d['selected'] for d in answers]
         info = {}
@@ -150,6 +151,8 @@ def get_analytics_selected():
         key = 'q' + str(cq)
         answers = [a for a in answers if a[key] in choicing]
     image_answer = [d['selected'] for d in answers]
+    print('もしかして')
+    print(image_answer)
     if image_answer:
         info = {}
         info['count'] = len(image_answer)
