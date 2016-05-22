@@ -122,7 +122,7 @@ def parse_answer_request(obj):
 @app.route('/analytics', methods=['GET', 'POST'])
 def get_analytics_info():
     _id = request.args.get('id')
-    answers = db.answers.find({'id': _id})
+    answers = db.answers.find({'searchId': _id})
     image_answer = [d['selected'] for d in answers]
     info = {}
     info['count'] = len(image_answer)
