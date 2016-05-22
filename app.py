@@ -119,6 +119,58 @@ def parse_answer_request(obj):
     return data
 
 
+@app.route('/analytics', methods=['GET', 'POST'])
+def get_analytics_info():
+    _id = request.args.get('id')
+    answers = db.answers.find({'id': _id})
+    image_answer = [d['selected'] for d in answers]
+    info = {}
+    info['count'] = len(image_answer)
+    info['images'] = count_yes(image_answer)
+    return json.dumps(info)
+
+
+@app.route('/analytics_selected', methods=['GET', 'POST'])
+def get_analytics_selected():
+    _id = request.args.get('researchId')
+    choices = request.args.getlist('choices')
+
+    choices = [json.loads(c) for c in choices]
+    answers = db.answers.find({'id': _id})
+    if choices == []:
+        image_answer = [d['selected'] for d in answers]
+        info = {}
+        info['count'] = len(image_answer)
+        info['images'] = count_yes(image_answer)
+        return json.dumps(info)
+
+    choices_questions = set([c['q'] for c in choices])
+    for cq in choices_questions:
+        choicing = [c['c'] for c in choices if c['q'] == cq]
+        key = 'q' + str(cq)
+        answers = [a for a in answers if a[key] in choicing]
+    image_answer = [d['selected'] for d in answers]
+    if image_answer:
+        info = {}
+        info['count'] = len(image_answer)
+        info['images'] = count_yes(image_answer)
+        return json.dumps(info)
+    else:
+        return 'None'
+
+
+
+def count_yes(data):
+    rtn = []
+    if data == []:
+        return None
+    image_count = len(data[0])
+    for i in range(image_count):
+        i_image_yes_count = [d[i] for d in data].count('1')
+        rtn.append({'id': i + 1, 'count': i_image_yes_count})
+    return rtn
+
+
 if __name__ == "__main__":
     MONGO_URI = os.environ.get('MONGODB_URI')
     if MONGO_URI:

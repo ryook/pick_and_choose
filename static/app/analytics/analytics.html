@@ -1,0 +1,62 @@
+<div class='main analytics' ng-contollrt="AnaController">
+
+<div class='col-sm-4 left'>
+  <select class="select" ng-model="research" ng-options="r.title for r in researches"></select>
+  <button class="btn btn-sm btn-info" ng-click="selectResearch()">select</button>
+  <h3>{{ title }}</h3>
+  <h4>{{ question }}</h4>
+  <h4>合計: {{ filtered_count }} ({{ (filtered_count / count) * 100}}%) : n={{count}}</h4>
+  <div class='forms'>
+    <form>
+      <div ng-repeat="q in questions">
+      <label>{{ q.title }}</lebel>
+        <div class="checkbox" ng-repeat="c in q.choices">
+          <input type="checkbox" ng-model='item.checked' ng-change='select_question($parent.$index, c)'><h5>{{c}}</h5></input>
+        </div>
+      </div>
+    </form>
+  </div>
+  <button class="btn btm-sm btn-success" ng-click='get_data()'>get</button>
+</div>
+<!--left  -->
+<div class="col-sm-8 right">
+  <select ng-options='sort for sort in sorts' ng-model='sort'></select>
+
+  <div class="img_table" ng-show="sort == 'all'">
+  <div class='imgCell' ng-repeat="img in show_data | orderBy: '-allCount'" ng-class="{top: img.rank < 6}">
+    <img src="{{research.image_path}}{{img.id}}.jpg"/ ng-click="showDetail(img)">
+  </div>
+  </div>
+
+  <div class="img_table" ng-show="sort == 'filter'">
+  <div class='imgCell' ng-repeat="img in show_data | orderBy: '-selectedCount'" ng-class="{top: img.rank < 6}">
+    <img src="{{research.image_path}}{{img.id}}.jpg"/ ng-click="showDetail(img)">
+  </div>
+  </div>
+
+  <div class="img_table" ng-show="sort == 'percent'">
+  <div class='imgCell' ng-repeat="img in show_data | orderBy: '-percent'" ng-class="{top: img.rank < 6}">
+    <img src="{{research.image_path}}{{img.id}}.jpg"/ ng-click="showDetail(img)">
+  </div>
+  </div>
+
+  <table class="col-sm-4">
+    <tr>
+      <th>id</th>
+      <td>{{detail.id}}</td>
+    </tr>
+    <tr>
+      <th>全体</th>
+      <td>{{detail.allCount}}</td>
+    </tr>
+    <tr>
+      <th>選択</th>
+      <td>{{detail.selectedCount}}</td>
+    </tr>
+    <tr>
+      <th>割合</th>
+      <td>{{detail.percent}}/{{detail.rank}}</td>
+    </tr>
+  </table>
+</div>
+</div>

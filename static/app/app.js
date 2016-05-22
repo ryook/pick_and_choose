@@ -20,5 +20,8 @@ app.config(['$routeProvider', function ($routeProvider) {
       .when('/admin/form/:researchId', {
         templateUrl: 'static/app/admin/form.html',
         controller: 'AdminFormController'})
+      .when('/analytics', {
+        templateUrl: 'static/app/analytics/analytics.html',
+        controller: 'AnaController'})
       .otherwise({redirectTo: '/'});
   }]);

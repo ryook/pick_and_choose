@@ -56,3 +56,28 @@ label {
 .btn{
   margin-bottom: 20px;
 }
+
+.img_table{
+  margin-top: 10px;
+}
+.analytics .right{
+  padding-top: 30px;
+}
+.analytics .imgCell{
+  width: 20%;
+  float: left;
+  text-align: center;
+}
+
+.analytics .top{
+  background-color: red;
+}
+
+.analytics img{
+  width: 90%;
+}
+
+table{
+  margin-top: 10px;
+  clear:left;
+}
