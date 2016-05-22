@@ -81,17 +81,23 @@ angular.module('pac')
       rtn = []
       for(var i=0, l=allL.length; i<l; i++){
         sub = {}
-        n = Math.round((seL[i].count / allL[i].count) * 100)
-        console.log(n)
-        if(!n){
-          console.log(000)
-          n = 0;
+        if(seL!=0){
+          n = Math.round((seL[i].count / allL[i].count) * 100)
+          console.log(n)
+          if(!n){
+            console.log(000)
+            n = 0;
+          }
+          sub['sub_id'] = seL[i].id
+          sub['selectedCount'] = seL[i].count
+          sub['percent'] = n
+        }else{
+          sub['sub_id'] = allL[i].id
+          sub['selectedCount'] = 0
+          sub['percent'] = 0
         }
         sub['id'] = allL[i].id
         sub['allCount'] =  allL[i].count
-        sub['sub_id'] = seL[i].count
-        sub['selectedCount'] = seL[i].count
-        sub['percent'] = n
         rtn.push(sub)
       }
 
