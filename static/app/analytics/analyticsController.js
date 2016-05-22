@@ -30,6 +30,7 @@ angular.module('pac')
             params: research
           }).success(function(data){
             $scope.count = data.count;
+            console.log(data)
             $scope.images_all_cnt = data.images
           }).error(function(data, status){
             console.log(status)
