@@ -51,11 +51,13 @@ angular.module('pac')
         }).success(function(data){
           console.log(data)
           if(data=='None'){
+            console.log(data)
             $scope.filtered_count = 0
             $scope.images_filtered_cnt = 0
           }else{
             $scope.filtered_count = data.count
             $scope.images_filtered_cnt = data.images
+            $scope.fa = data.fa
           }
           set_show_data($scope.images_all_cnt, $scope.images_filtered_cnt)
         }).error(function(data, status){
@@ -114,6 +116,18 @@ angular.module('pac')
       }
       $scope.show_data = rtn
 
+    }
+
+    get_fa = function(){
+      $http({
+          method: 'GET',
+          url: '/fa',
+          params: {'id': $scope.researchId}
+        }).success(function(data){
+          $scope.researches = data
+        }).error(function(data, status){
+          console.log(status)
+      })
     }
 
     $scope.showDetail = function(d){

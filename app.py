@@ -139,9 +139,17 @@ def get_analytics_selected():
     answers = db.answers.find({'searchId': _id})
     if choices == []:
         image_answer = [d['selected'] for d in answers]
+        answers = db.answers.find({'searchId': _id})
+        fa_answer = []
+        for a in answers:
+            try:
+                fa_answer.append(a['free'])
+            except:
+                continue
         info = {}
         info['count'] = len(image_answer)
         info['images'] = count_yes(image_answer)
+        info['fa'] = fa_answer
         return json.dumps(info)
 
     choices_questions = set([c['q'] for c in choices])
@@ -157,14 +165,23 @@ def get_analytics_selected():
                 print(a)
         answers = new_answers
         # answers = [a for a in answers if a[key] in choicing]
-    image_answer = [d['selected'] for d in new_answers]
-    if image_answer:
+
+    fa_answer = []
+    for a in answers:
+        try:
+            fa_answer.append(a['free'])
+        except:
+            continue
+    image_answer = [d['selected'] for d in answers]
+    if answers:
         info = {}
         info['count'] = len(image_answer)
         info['images'] = count_yes(image_answer)
+        info['fa'] = fa_answer
+        print(fa_answer)
         return json.dumps(info)
     else:
-        return 'None'
+        return None
 
 
 
