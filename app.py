@@ -204,7 +204,10 @@ def to_tev(id):
         sub_list = [a['sex']]
         for q_n in range(len(last_questons)):
             key = 'q' + str(q_n + 1)
-            sub_list.append(a[key])
+            try:
+                sub_list.append(a[key])
+            except KeyError:
+                print(a)
         for s in a['selected']:
             sub_list.append(s)
         if researches['FA'] == 'true':
