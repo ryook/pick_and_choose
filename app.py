@@ -160,7 +160,11 @@ def get_analytics_selected():
                 print(a)
         answers = new_answers
         # answers = [a for a in answers if a[key] in choicing]
-    image_answer = [d['selected'] for d in new_answers]
+    image_answer = []
+    fa_answer = []
+    for a in answers:
+        image_answer.append(d['selected'])
+        fa_answer.append(d[''])
     if image_answer:
         info = {}
         info['count'] = len(image_answer)
@@ -181,6 +185,44 @@ def count_yes(data):
         rtn.append({'id': i + 1, 'count': i_image_yes_count})
     return rtn
 
+@app.route('/to_tsv/<int:id>', methods=['GET', 'POST'])
+def to_tev(id):
+    researches = db.researches.find_one({'id': id})
+    last_questons = researches['questions']
+    answers = db.answers.find({'searchId': str(id)})
+    rtn_data = []
+    header = '性別'
+    for q in last_questons:
+        header += '\t' + q['title']
+    for i in range(int(researches['imageCount'])):
+        img_url = ':{' + researches['image_path'] + str(i + 1) + '}'
+        header += '\t' + 'i' + str(i + 1) + img_url
+    header += '\tFA\n'
+    rtn_text = header
+    for i, a in enumerate(answers):
+        a.pop('_id')
+        sub_list = [a['sex']]
+        for q_n in range(len(last_questons)):
+            key = 'q' + str(q_n + 1)
+            sub_list.append(a[key])
+        for s in a['selected']:
+            sub_list.append(s)
+        if researches['FA'] == 'true':
+            sub_list.append(a['free'])
+        else:
+            sub_list.append('')
+        rtn_data.append(sub_list)
+        body_text = u'\t'.join(sub_list) + '\n'
+        rtn_text += body_text
+    # return json.dumps(rtn_data)
+    return rtn_text
+
+
+@app.route('/r_to_tsv/<int:id>', methods=['GET', 'POST'])
+def r_to_tev(id):
+    researches = db.researches.find_one({'id': id})
+    researches.pop('_id')
+    return json.dumps(researches)
 
 if __name__ == "__main__":
     MONGO_URI = os.environ.get('MONGODB_URI')
