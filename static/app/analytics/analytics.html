@@ -8,6 +8,19 @@
   <h4>合計: {{ filtered_count }} ({{ (filtered_count / count) * 100}}%) : n={{count}}</h4>
   <div class='forms'>
     <form>
+      <div>
+      <label>性別</lebel>
+      <div class="checkbox">
+        <input type="checkbox" ng-model='sex.m' ng-change='select_question("sex", "男性")'><h5>男性</h5></input>
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" ng-model='sex.f' ng-change='select_question("sex", "女性")'><h5>女性</h5></input>
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" ng-model='sex.a' ng-change='select_question("sex", "その他")'><h5>その他</h5></input>
+      </div>
+      </div>
+
       <div ng-repeat="q in questions">
       <label>{{ q.title }}</lebel>
         <div class="checkbox" ng-repeat="c in q.choices">

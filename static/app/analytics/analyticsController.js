@@ -65,7 +65,12 @@ angular.module('pac')
     }
 
     $scope.select_question = function(i, d){
-      sub = {'q': i + 1, 'c': d}
+      if(i == 'sex'){
+        sub = {'q': 'sex', 'c': d}
+      }else{
+        sub = {'q': i + 1, 'c': d}
+      }
+
       if($scope.check.indexOf(d) == -1 ){
         $scope.selected_question.push(sub)
         $scope.check.push(d)
@@ -76,6 +81,7 @@ angular.module('pac')
         newC = $scope.check.filter(function(v){return v != d;});
         $scope.check = newC
       }
+      console.log($scope.selected_question)
     }
 
     set_show_data = function(allL, seL){

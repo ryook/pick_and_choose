@@ -147,7 +147,10 @@ def get_analytics_selected():
     choices_questions = set([c['q'] for c in choices])
     for cq in choices_questions:
         choicing = [c['c'] for c in choices if c['q'] == cq]
-        key = 'q' + str(cq)
+        if cq == 'sex':
+            key = 'sex'
+        else:
+            key = 'q' + str(cq)
         new_answers = []
         for a in answers:
             try:
