@@ -1,4 +1,4 @@
-# codig:utf-8
+# -*- coding: UTF-8 -*-
 
 import json
 import os
