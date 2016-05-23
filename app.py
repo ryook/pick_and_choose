@@ -191,28 +191,28 @@ def to_tev(id):
     last_questons = researches['questions']
     answers = db.answers.find({'searchId': str(id)})
     rtn_data = []
-    header = '性別'
+    header = u'性別'
     for q in last_questons:
-        header += '\t' + q['title'].encode('utf-8')
+        header += u'\t' + q['title']
     for i in range(int(researches['imageCount'])):
-        img_url = ':{' + researches['image_path'] + str(i + 1) + '}'
-        header += '\t' + 'i' + str(i + 1) + img_url
-    header += '\tFA\n'
+        img_url = u':{' + researches['image_path'] + str(i + 1) + u'}'
+        header += u'\t' + u'i' + str(i + 1) + img_url
+    header += u'\tFA\n'
     rtn_text = header
     for i, a in enumerate(answers):
         a.pop('_id')
-        sub_list = [a['sex'].encode('utf-8')]
+        sub_list = [a['sex']]
         for q_n in range(len(last_questons)):
-            key = 'q' + str(q_n + 1)
+            key = u'q' + str(q_n + 1)
             sub_list.append(a[key])
         for s in a['selected']:
             sub_list.append(s)
         if researches['FA'] == 'true':
-            sub_list.append(a['free'].encode('utf-8'))
+            sub_list.append(a['free'])
         else:
             sub_list.append('')
         rtn_data.append(sub_list)
-        body_text = u'\t'.join(sub_list) + '\n'
+        body_text = u'\t'.join(sub_list) + u'\n'
         rtn_text += body_text
     # return json.dumps(rtn_data)
     return rtn_text
