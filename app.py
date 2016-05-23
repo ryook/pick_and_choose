@@ -207,7 +207,7 @@ def to_tev(id):
             try:
                 sub_list.append(a[key])
             except KeyError:
-                print(a)
+                sub_list.append('')
         for s in a['selected']:
             sub_list.append(s)
         if researches['FA'] == 'true':
