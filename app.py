@@ -193,7 +193,7 @@ def to_tev(id):
     rtn_data = []
     header = '性別'
     for q in last_questons:
-        header += '\t' + q['title']
+        header += '\t' + q['title'].encode('utf-8')
     for i in range(int(researches['imageCount'])):
         img_url = ':{' + researches['image_path'] + str(i + 1) + '}'
         header += '\t' + 'i' + str(i + 1) + img_url
@@ -201,14 +201,14 @@ def to_tev(id):
     rtn_text = header
     for i, a in enumerate(answers):
         a.pop('_id')
-        sub_list = [a['sex']]
+        sub_list = [a['sex'].encode('utf-8')]
         for q_n in range(len(last_questons)):
             key = 'q' + str(q_n + 1)
             sub_list.append(a[key])
         for s in a['selected']:
             sub_list.append(s)
         if researches['FA'] == 'true':
-            sub_list.append(a['free'])
+            sub_list.append(a['free'].encode('utf-8'))
         else:
             sub_list.append('')
         rtn_data.append(sub_list)
