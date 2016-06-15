@@ -54,6 +54,8 @@ def get_admin_reaserches():
 def get_reaserch(id):
     if request.method == 'POST':
         data = parse_research_request(request.args)
+        print(data)
+        data
         if id == 0:
             all_data = [d for d in db.researches.find()]
             new_id = len(all_data) + 1
@@ -93,6 +95,7 @@ def parse_research_request(obj):
     data['question'] = obj.get('question')
     data['FA'] = obj.get('FA')
     data['FATitle'] = obj.get('FATitle')
+    data['isShow'] = obj.get('isShow')
     questions = obj.getlist('questions')
     add_questions = []
     for question in questions:

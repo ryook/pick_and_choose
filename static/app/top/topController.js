@@ -7,6 +7,7 @@ angular.module('pac')
         url: '/research'
       }).success(function(data){
         $scope.researches = data
+        console.log(data)
       }).error(function(data, status){
         console.log(status)
     })

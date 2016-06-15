@@ -19,6 +19,11 @@ angular.module('pac')
            }else {
              $scope.FA = false;
            }
+           if(data.isShow == 'true'){
+             $scope.isShow = true;
+           }else {
+             $scope.isShow = false;
+           }
 
            $scope.FATitle = data.FATitle
            data.questions.forEach(function(d){
@@ -43,6 +48,7 @@ angular.module('pac')
     }
 
     $scope.save = function(){
+      console.log($scope.isShow)
       query = {}
       query.title = $scope.title;
       query.description = $scope.description;
@@ -53,7 +59,9 @@ angular.module('pac')
       query.limit = $scope.limit;
       query.FA = $scope.FA
       query.FATitle = $scope.FATitle
+      query.isShow = $scope.isShow
       requestUrl = '/research/' + id;
+      console.log(query)
 
       $http({
           method: 'POST',
