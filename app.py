@@ -168,7 +168,10 @@ def get_analytics_selected():
     for a in answers:
         print(a)
         image_answer.append(a['selected'])
-        fa_answer.append(a['free'])
+        try:
+            fa_answer.append(a['free'])
+        except KeyError:
+            fa_answer.append('')
     if image_answer:
         info = {}
         info['count'] = len(image_answer)
