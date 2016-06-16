@@ -21,6 +21,10 @@ img{
   width: 100%;
 }
 
+.left {
+  overflow: scroll;
+}
+
 .selected{
   -webkit-filter: grayscale(100%);
    -moz-filter: grayscale(100%);
