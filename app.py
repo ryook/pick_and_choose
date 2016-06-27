@@ -57,8 +57,8 @@ def get_reaserch(id):
         print(data)
         data
         if id == 0:
-            all_data = [d for d in db.researches.find()]
-            new_id = len(all_data) + 1
+            all_ids = [d['id'] for d in db.researches.find()]
+            new_id = max(all_ids) + 1
             data['id'] = new_id
             db.researches.save(data)
             return "success"
