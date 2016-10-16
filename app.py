@@ -197,14 +197,16 @@ def count_yes(data):
 def to_tev(id):
     researches = db.researches.find_one({'id': id})
     last_questons = researches['questions']
+    question_cnt = len(researches['anyQuestions'].split('\n'))
     answers = db.answers.find({'searchId': str(id)})
     rtn_data = []
     header = u'性別'
     for q in last_questons:
         header += u'\t' + q['title']
-    for i in range(int(researches['imageCount'])):
-        img_url = u':{' + researches['image_path'] + str(i + 1) + u'}'
-        header += u'\t' + u'i' + str(i + 1) + img_url
+    for q in range(question_cnt):
+        for i in range(int(researches['imageCount'])):
+            img_url = u':{' + researches['image_path'] + str(i + 1) + u'}'
+            header += u'\t' + u'q{}_i{}'.format(q + 1, i + 1)
     header += u'\tFA\n'
     rtn_text = header
     for i, a in enumerate(answers):
