@@ -3,6 +3,7 @@ angular.module('pac')
    function ($scope, $http, $location, $routeParams) {
     $scope.selceting = true
     $scope.curr_count = 0
+    $scope.curr_q = 1
     id = $routeParams.researchId
     $scope.searchId = id
     $http({
@@ -17,25 +18,36 @@ angular.module('pac')
     $scope.free;
     // answer1
     set_question = function(){
-      $scope.question = $scope.data.question
+
+      $scope.questions = $scope.data.anyQuestions.split('\n')
+      $scope.questionCnt = $scope.questions.length
       const imageNum = $scope.data.imageCount
       const imagePath = $scope.data.image_path
       $scope.limit = $scope.data.limit
       $scope.FA = $scope.data.FA
       $scope.FATitle = $scope.data.FATitle
       var images = [];
-      var showImages = [];
-      for(var i=1;i<=imageNum;i++){
-        obj = {};
-        obj['url'] = imagePath + i + '.jpg';
-        obj['id'] = i;
-        obj['selected'] = false;
-        images.push(obj)
-        showImages.push(obj)
+      var showImagesSet = [];
+      for(var q=1;q<=$scope.questionCnt;q++){
+        tmpList = [];
+        for(var i=1;i<=imageNum;i++){
+          obj = {};
+          obj['url'] = imagePath + i + '.jpg';
+          obj['id'] = (q-1)*imageNum + i
+          obj['name'] = 'q' + q + '_' + i;
+          obj['selected'] = false;
+          images.push(obj);
+          tmpList.push(obj);
+        };
+        showImagesSet.push(shuffle(tmpList))
       }
+
       $scope.imageList = images;
-      $scope.showImages = shuffle(showImages)
+      $scope.showImagesSet = showImagesSet;
+      $scope.showImages = $scope.showImagesSet[$scope.curr_q -1]
+      console.log($scope.showImages)
     }
+
 
     var shuffle = function(list) {
       var i = list.length;
@@ -50,6 +62,7 @@ angular.module('pac')
       return list;
     };
 
+
     $scope.clk_img = function(obj){
       if(obj.selected == false){
         if($scope.curr_count < $scope.limit){
@@ -63,11 +76,30 @@ angular.module('pac')
     };
 
     $scope.click_nxtbtn = function(){
-      $scope.selceting = false;
+      if($scope.questionCnt == $scope.curr_q){
+        $scope.selceting = false;
+      }else {
+        $scope.curr_q += 1
+        $scope.showImages = $scope.showImagesSet[$scope.curr_q -1]
+        $scope.curr_count = 0
+        $scope.showImages.forEach(function(d){
+          if(d.selected == true){
+            $scope.curr_count += 1
+          }
+        })
+      }
     }
 
     $scope.click_backbtn = function(){
       $scope.selceting = true;
+      $scope.curr_q -= 1
+      $scope.showImages = $scope.showImagesSet[$scope.curr_q -1]
+      $scope.curr_count = 0
+      $scope.showImages.forEach(function(d){
+        if(d.selected == true){
+          $scope.curr_count += 1
+        }
+      })
     }
 
     // answer2
