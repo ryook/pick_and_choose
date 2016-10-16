@@ -93,6 +93,7 @@ def parse_research_request(obj):
     data['imageCount'] = obj.get('imageCount')
     data['limit'] = obj.get('limit')
     data['question'] = obj.get('question')
+    data['anyQuestions'] = obj.get('anyQuestions')
     data['FA'] = obj.get('FA')
     data['FATitle'] = obj.get('FATitle')
     data['isShow'] = obj.get('isShow')

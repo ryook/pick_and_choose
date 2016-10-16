@@ -8,12 +8,14 @@ angular.module('pac')
            method: 'GET',
            url: requestUrl
          }).success(function(data){
+           console.log(data)
            $scope.title = data.title;
            $scope.description = data.description;
            $scope.image = data.image_path;
            $scope.imageCount = data.imageCount;
            $scope.limit = data.limit;
            $scope.question = data.question;
+           $scope.anyQuestions = data.anyQuestions;
            if(data.FA == 'true'){
              $scope.FA = true;
            }else {
@@ -56,6 +58,7 @@ angular.module('pac')
       query.questions = $scope.addquestions;
       query.imageCount = $scope.imageCount;
       query.question = $scope.question;
+      query.anyQuestions = $scope.anyQuestions;
       query.limit = $scope.limit;
       query.FA = $scope.FA
       query.FATitle = $scope.FATitle
