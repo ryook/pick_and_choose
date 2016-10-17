@@ -1,6 +1,6 @@
 <div class='main toppage' ng-contollrt="ResearchController">
   <span ng-if="selceting == true">
-  <h3>{{question}}</h3>
+  <h3>{{questions[curr_q - 1]}}</h3>
   <h4 ng-if='limit != data.imageCount'>
     あと{{limit - curr_count}}枚　(取り消したい場合はもう一度選択してください。)
   </h4>
@@ -13,13 +13,15 @@
   <span ng-if='limit != data.imageCount'>
     <button ng-if='limit == curr_count' class="btn btn-info col-xs-12" ng-click="click_nxtbtn()">Next</button>
   </span>
-  <span ng-if='limit == data.imageCount'>
+  <button ng-if='curr_q != 1' class="btn btn-warning col-xs-12" ng-click="click_backbtn()">back</button>
+  <!-- <span ng-if='limit == data.imageCount'>
+    <button class="btn btn-info col-xs-12" ng-click="click_backbtn()">back</button>
     <button class="btn btn-info col-xs-12" ng-click="click_nxtbtn()">Next</button>
-  </span>
+  </span> -->
   </span>
 
   <span ng-if="selceting == false">
-    <button class="btn btn-info col-xs-12" ng-click="click_backbtn()">back</button>
+    <button class="btn btn-warning col-xs-12" ng-click="click_backbtn()">back</button>
     <h4>性別</h4>
     <select class="form-control" ng-model="sex" ng-options="s for s in sexs"></select>
     <!-- <h4>年齢</h4>

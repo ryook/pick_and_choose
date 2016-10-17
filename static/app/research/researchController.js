@@ -18,8 +18,7 @@ angular.module('pac')
     $scope.free;
     // answer1
     set_question = function(){
-
-      $scope.questions = $scope.data.anyQuestions.split('\n')
+      $scope.questions = $scope.data.anyQuestions.split('\n');
       $scope.questionCnt = $scope.questions.length
       const imageNum = $scope.data.imageCount
       const imagePath = $scope.data.image_path
@@ -76,8 +75,10 @@ angular.module('pac')
     };
 
     $scope.click_nxtbtn = function(){
+
       if($scope.questionCnt == $scope.curr_q){
         $scope.selceting = false;
+        $scope.curr_q += 1
       }else {
         $scope.curr_q += 1
         $scope.showImages = $scope.showImagesSet[$scope.curr_q -1]
