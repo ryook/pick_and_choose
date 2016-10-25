@@ -41,7 +41,7 @@ angular.module('pac')
        })
      }
 
-    $scope.sex = "男性&#13;&#10;女性&#13;&#10;その他"
+    $scope.sex = "男性&#13;&#10;女性"
     $scope.addquestions = [{"id":1, "title":"", "choices":""}]
 
     $scope.add = function(){

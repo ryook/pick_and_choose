@@ -105,7 +105,7 @@ angular.module('pac')
     }
 
     // answer2
-    $scope.sexs = ["男性", '女性', 'その他']
+    $scope.sexs = ["男性", '女性']
 
     ageList = new Array(56);
     ageList[0] = '14際以下';
