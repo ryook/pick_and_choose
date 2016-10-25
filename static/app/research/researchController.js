@@ -89,6 +89,7 @@ angular.module('pac')
           }
         })
       }
+      window.scrollTo(0,0);
     }
 
     $scope.click_backbtn = function(){
